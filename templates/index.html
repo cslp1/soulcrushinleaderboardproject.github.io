@@ -6,41 +6,6 @@
     <title>SCLP Official</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat">
     <link rel="stylesheet" href="/static/style.css">
-    <script>
-const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrSTdRw3H27n0pjrjTYD6uE9Ke8fWAFb05U2xcXq3j1qRY7q7OOIFVyAxg_LKOkm5Mfpbi8qQwnf1z/pub?output=csv';
-
-fetch(url)
-  .then(response => response.text())
-  .then(csvText => {
-    const rows = csvText.trim().split('\n').map(row => row.split(','));
-
-    const container = document.getElementById('leaderboard-container');
-    const table = document.createElement('table');
-    table.style.borderCollapse = 'collapse';
-    table.style.width = '100%';
-
-    rows.forEach((row, rowIndex) => {
-      const tr = document.createElement('tr');
-      row.forEach(cell => {
-        const cellEl = document.createElement(rowIndex === 0 ? 'th' : 'td');
-        cellEl.textContent = cell;
-        cellEl.style.border = '1px solid #ccc';
-        cellEl.style.padding = '6px';
-        cellEl.style.textAlign = 'left';
-        tr.appendChild(cellEl);
-      });
-      table.appendChild(tr);
-    });
-
-    container.appendChild(table);
-  })
-  .catch(err => {
-    document.getElementById('leaderboard-container').textContent =
-      'Failed to load leaderboard.';
-    console.error(err);
-  });
-</script>
-
 </head>
 <body>
     <div id="main">
